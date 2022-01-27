@@ -13,5 +13,21 @@ public class Application {
         System.out.println(String.format("2 in 10 power is %d", calculator.power(2, 10)));
         System.out.println("======");
         System.out.println("divide 4 / 2 = " + calculator.divide(4, 2));
+        System.out.println("======");
+        System.out.println(String.format("3 in 3 power is %d", calculator.power(3, 3)));
+        System.out.println("======");
+        System.out.println("divide 10 / 2 = " + calculator.divide(10, 2));
+        System.out.println("======");
+        System.out.println("abs 1 = " + calculator.abs(1));
+        System.out.println("======");
+        System.out.println("abs -1 = " + calculator.abs(-1));
+        System.out.println("======");
+        System.out.println("abs long 100000 = " + calculator.abs(100000L));
+        System.out.println("======");
+        System.out.println("abs long -100000 = " + calculator.abs(-100000L));
+        System.out.println("======");
+        System.out.println("abs double 2.0 = " + calculator.abs(2.0));
+        System.out.println("======");
+        System.out.println("abs double -2.0 = " + calculator.abs(-2.0));
     }
 }

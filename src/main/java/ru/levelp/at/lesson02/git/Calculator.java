@@ -43,4 +43,25 @@ public class Calculator {
         return Math.tanh(a);
     }
 
+    public int abs(int a) {
+        if (a < 0) {
+            return a * -1;
+        }
+        return a;
+    }
+
+    public long abs(long a) {
+        if (a < 0) {
+            return a * -1;
+        }
+        return a;
+    }
+
+    public double abs(double a) {
+        if (a < 0) {
+            return a * -1;
+        }
+        return a;
+    }
+
 }
