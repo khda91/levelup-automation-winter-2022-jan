@@ -14,6 +14,19 @@ public class Calculator {
         return a / b;
     }
 
+    public int power(int a, int b) {
+        if (b < 0) {
+            throw new IllegalArgumentException("b cannot be negative.");
+        }
+
+        int result = 1;
+
+        for (int i = 0; i < b; i++) {
+            result *= a;
+        }
+        return result;
+    }
+
     public long factorial(long a) {
         long result = 1;
         for (int i = 1; i <= a; i++) {
