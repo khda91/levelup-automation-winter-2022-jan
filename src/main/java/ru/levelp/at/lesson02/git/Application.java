@@ -9,5 +9,7 @@ public class Application {
         System.out.println(String.format("subtract 4 - 5 = %d", calculator.subtract(4, 5)));
         System.out.println("======");
         System.out.println(String.format("5! = %d", calculator.factorial(5)));
+        System.out.println("======");
+        System.out.println(String.format("2 in 10 power is %d", calculator.power(2, 10)));
     }
 }
