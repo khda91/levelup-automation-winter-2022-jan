@@ -27,10 +27,6 @@ public class Calculator {
         return result;
     }
 
-    public double sin(double a) {
-        return Math.sin(a);
-    }
-
     public long factorial(long a) {
         long result = 1;
         for (int i = 1; i <= a; i++) {
@@ -39,8 +35,33 @@ public class Calculator {
         return result;
     }
 
-    public int multiply(int a, int b) {
-        return a + b;
+    public double cos(double a) {
+        return Math.cos(a);
+    }
+
+    public double tanh(double a) {
+        return Math.tanh(a);
+    }
+
+    public int abs(int a) {
+        if (a < 0) {
+            return a * -1;
+        }
+        return a;
+    }
+
+    public long abs(long a) {
+        if (a < 0) {
+            return a * -1;
+        }
+        return a;
+    }
+
+    public double abs(double a) {
+        if (a < 0) {
+            return a * -1;
+        }
+        return a;
     }
 
 }
