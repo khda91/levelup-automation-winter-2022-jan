@@ -26,8 +26,5 @@ public class Application {
         System.out.println("======");
         System.out.println("abs long -100000 = " + calculator.abs(-100000L));
         System.out.println("======");
-        System.out.println("abs double 2.0 = " + calculator.abs(2.0));
-        System.out.println("======");
-        System.out.println("abs double -2.0 = " + calculator.abs(-2.0));
     }
 }
