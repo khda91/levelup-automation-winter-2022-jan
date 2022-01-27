@@ -64,6 +64,10 @@ public class Calculator {
         return a;
     }
 
+    public double ceil(double a) {
+        return Math.ceil(a);
+    }
+
     public double floor(double a) {
         return Math.floor(a);
     }
