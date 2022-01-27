@@ -46,4 +46,8 @@ public class Calculator {
     public double cos(double a) {
         return Math.cos(a);
     }
+
+    public double tan(double a) {
+        return Math.tan(a);
+    }
 }
