@@ -38,4 +38,8 @@ public class Calculator {
         }
         return result;
     }
+
+    public double cos(double a) {
+        return Math.cos(a);
+    }
 }
