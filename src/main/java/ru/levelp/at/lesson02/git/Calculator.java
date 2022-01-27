@@ -64,4 +64,8 @@ public class Calculator {
         return a;
     }
 
+    public double floor(double a) {
+        return Math.floor(a);
+    }
+
 }
