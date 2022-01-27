@@ -27,6 +27,10 @@ public class Calculator {
         return result;
     }
 
+    public double sin(double a) {
+        return Math.sin(a);
+    }
+
     public long factorial(long a) {
         long result = 1;
         for (int i = 1; i <= a; i++) {
