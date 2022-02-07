@@ -1,21 +1,24 @@
 package ru.levelp.at.lesson03.maven.unit.test.data.provider;
 
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import ru.levelp.at.lesson03.maven.unit.test.inheretence.CalculatorBaseTest;
 
 public class SampleExternalCalculatorDataProviderTest extends CalculatorBaseTest {
 
-    @Test(dataProviderClass = CalculatorExternalDataProvider.class,
-          dataProvider = "sumCalculatorDataProvider")
+    @ParameterizedTest
+    @MethodSource("ru.levelp.at.lesson03.maven.unit.test.data.provider.CalculatorExternalDataProvider"
+        + "#sumCalculatorDataProvider")
     public void sumCalculatorTest(int a, int b, int expectedResult) {
         int actualResult = calculator.sum(a, b);
         assertEquals(actualResult, expectedResult);
     }
 
-    @Test(dataProviderClass = CalculatorExternalDataProvider.class,
-          dataProvider = "Subtract test data for calculator")
+    @ParameterizedTest
+    @MethodSource("ru.levelp.at.lesson03.maven.unit.test.data.provider.CalculatorExternalDataProvider"
+        + "#subtractCalculatorDataProvider")
     public void subtractCalculatorTest(int a, int b, int expectedResult) {
         int actualResult = calculator.subtract(a, b);
         assertEquals(actualResult, expectedResult);

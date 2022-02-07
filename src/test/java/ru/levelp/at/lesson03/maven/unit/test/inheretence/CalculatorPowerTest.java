@@ -1,13 +1,13 @@
 package ru.levelp.at.lesson03.maven.unit.test.inheretence;
 
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CalculatorPowerTest extends CalculatorBaseTest {
 
-    @BeforeMethod
+    @BeforeEach
     @Override
     public void setUp() {
         super.setUp();
@@ -18,29 +18,23 @@ public class CalculatorPowerTest extends CalculatorBaseTest {
     public void testCalculatorPower() {
         System.out.println(this.getClass().getCanonicalName() + "#testCalculatorPower");
         int actualResult = calculator.power(2, 10);
-        Assert.assertEquals(actualResult, 1024);
-    }
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
-    public void testCalculatorPowerNegative() {
-        System.out.println(this.getClass().getCanonicalName() + "#testCalculatorPowerNegative");
-        calculator.power(2, -2);
+        Assertions.assertEquals(1024, actualResult);
     }
 
     @Test
     public void testCalculatorPowerNegativeAssertThrows() {
         System.out.println(this.getClass().getCanonicalName() + "#testCalculatorPowerNegativeAssertThrows");
-        Assert.assertThrows(IllegalArgumentException.class, () -> calculator.power(2, -2));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> calculator.power(2, -2));
     }
 
     @Test
     public void testCalculatorPowerNotEquals() {
         System.out.println(this.getClass().getCanonicalName() + "#testCalculatorPowerNotEquals");
         int actualResult = calculator.power(2, 0);
-        Assert.assertNotEquals(actualResult, 2);
+        Assertions.assertNotEquals(2, actualResult);
     }
 
-    @AfterClass
+    @AfterAll
     @Override
     public void afterClass() {
         super.afterClass();

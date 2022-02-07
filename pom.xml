@@ -14,30 +14,29 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <checkstyle.version>8.42</checkstyle.version>
-        <testng.version>7.5</testng.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
 
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 
         <!-- testing properties -->
-        <suite.xml.base.path>${project.basedir}/src/test/resources/ru/levelp/at</suite.xml.base.path>
-        <suite.xml.file/>
+        <include.test.classes/>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
-            <!-- исключаем транзетивные зависимости из основной библиотеки -->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>com.google.code.findbugs</groupId>-->
-<!--                    <artifactId>jsr305</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-engine</artifactId>
+            <version>1.8.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -45,21 +44,21 @@
         <profile>
             <id>lesson-03-04-sample-calculator-test-suite</id>
             <properties>
-                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorTestSuite.xml</suite.xml.file>
+                <include.test.classes>%regex[.*(Sum|Power).*Test.*]</include.test.classes>
             </properties>
         </profile>
 
         <profile>
             <id>lesson-03-04-sample-calculator-package-suite</id>
             <properties>
-                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorPackageSuite.xml</suite.xml.file>
+                <include.test.classes>**/*Test.java</include.test.classes>
             </properties>
         </profile>
 
         <profile>
             <id>lesson-03-04-sample-calculator-positive-group-suite</id>
             <properties>
-                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorTestPositiveGroupSuite.xml</suite.xml.file>
+                <include.test.classes>**/PositiveTestSuite.java</include.test.classes>
             </properties>
         </profile>
 
@@ -119,10 +118,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <suiteXmlFiles>
-<!--                        <suiteXmlFile>src/test/resources/ru/levelp/at/lesson03_04/unit/tests/suites/SampleCalculatorPackageSuite.xml</suiteXmlFile>-->
-                        <suiteXmlFile>${suite.xml.file}</suiteXmlFile>
-                    </suiteXmlFiles>
+                    <includes>
+<!--                        <include>**/*Test.java</include>-->
+                        <include>${include.test.classes}</include>
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>

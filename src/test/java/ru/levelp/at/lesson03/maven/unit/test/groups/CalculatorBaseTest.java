@@ -1,46 +1,37 @@
 package ru.levelp.at.lesson03.maven.unit.test.groups;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import ru.levelp.at.lesson03.maven.unit.test.Calculator;
 
+@TestInstance(Lifecycle.PER_CLASS)
 public abstract class CalculatorBaseTest {
 
     protected Calculator calculator;
 
-    @BeforeSuite
-    public void beforeSuite() {
-        System.out.println(this.getClass().getCanonicalName() + "#beforeSuite");
-    }
-
-    @BeforeClass
+    @BeforeAll
     public void beforeClass() {
         System.out.println(this.getClass().getCanonicalName() + "#beforeClass");
     }
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeEach
     public void setUp() {
         System.out.println(this.getClass().getCanonicalName() + "#setUp");
         calculator = new Calculator();
     }
 
-    @AfterMethod(groups = {"positive", "negative"})
+    @AfterEach
     public void tearDown() {
         calculator = null;
         System.out.println(this.getClass().getCanonicalName() + "#tearDown");
     }
 
-    @AfterClass
+    @AfterAll
     public void afterClass() {
         System.out.println(this.getClass().getCanonicalName() + "#afterClass");
-    }
-
-    @AfterSuite
-    public void afterSuite() {
-        System.out.println(this.getClass().getCanonicalName() + "#afterSuite");
     }
 }

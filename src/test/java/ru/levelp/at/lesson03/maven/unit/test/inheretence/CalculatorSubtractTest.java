@@ -1,7 +1,7 @@
 package ru.levelp.at.lesson03.maven.unit.test.inheretence;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CalculatorSubtractTest extends CalculatorBaseTest {
 
@@ -9,7 +9,7 @@ public class CalculatorSubtractTest extends CalculatorBaseTest {
     public void testCalculatorSubtract() {
         System.out.println(this.getClass().getCanonicalName() + "#testCalculatorSubtract");
         int actualResult = calculator.subtract(2, 2);
-        Assert.assertEquals(actualResult, 0);
+        Assertions.assertEquals(0, actualResult);
     }
 
 }

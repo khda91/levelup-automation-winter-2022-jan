@@ -1,6 +1,6 @@
 package ru.levelp.at.lesson03.maven.unit.test;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 public class SampleTestClass {
 

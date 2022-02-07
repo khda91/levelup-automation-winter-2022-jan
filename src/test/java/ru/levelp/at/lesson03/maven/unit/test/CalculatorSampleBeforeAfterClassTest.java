@@ -1,22 +1,22 @@
 package ru.levelp.at.lesson03.maven.unit.test;
 
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CalculatorSampleBeforeAfterClassTest {
 
     private Calculator calculator;
 
-    @BeforeClass
-    public void beforeClass() {
-        System.out.println(this.getClass().getCanonicalName() + "#beforeClass");
+    @BeforeAll
+    public static void beforeClass() {
+        System.out.println(CalculatorSampleBeforeAfterClassTest.class.getCanonicalName() + "#beforeClass");
     }
 
-    @BeforeMethod
+    @BeforeEach
     public void setUp() {
         System.out.println(this.getClass().getCanonicalName() + "#setUp");
         calculator = new Calculator();
@@ -26,25 +26,24 @@ public class CalculatorSampleBeforeAfterClassTest {
     public void testCalculatorSum() {
         System.out.println(this.getClass().getCanonicalName() + "#testCalculatorSum");
         int actualResult = calculator.sum(2, 2);
-        Assert.assertEquals(actualResult, 4);
+        Assertions.assertEquals(4, actualResult);
     }
 
     @Test
     public void testCalculatorSubtract() {
         System.out.println(this.getClass().getCanonicalName() + "#testCalculatorSubtract");
         int actualResult = calculator.subtract(2, 2);
-        Assert.assertEquals(actualResult, 0);
+        Assertions.assertEquals(0, actualResult);
     }
 
-    @AfterMethod
+    @AfterEach
     public void tearDown() {
         calculator = null;
         System.out.println(this.getClass().getCanonicalName() + "#tearDown");
     }
 
-    @AfterClass
-    public void afterClass() {
-        System.out.println(this.getClass().getCanonicalName() + "#afterClass");
+    @AfterAll
+    public static void afterClass() {
+        System.out.println(CalculatorSampleBeforeAfterClassTest.class.getCanonicalName() + "#afterClass");
     }
-
 }

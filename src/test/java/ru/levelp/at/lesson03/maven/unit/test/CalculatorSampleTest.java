@@ -1,7 +1,7 @@
 package ru.levelp.at.lesson03.maven.unit.test;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CalculatorSampleTest {
 
@@ -9,14 +9,13 @@ public class CalculatorSampleTest {
     public void testCalculatorSum() {
         Calculator calculator = new Calculator();
         int actualResult = calculator.sum(2, 2);
-        Assert.assertEquals(actualResult, 4);
+        Assertions.assertEquals(4, actualResult);
     }
 
     @Test
     public void testCalculatorSubtract() {
         Calculator calculator = new Calculator();
         int actualResult = calculator.subtract(2, 2);
-        Assert.assertEquals(actualResult, 0);
+        Assertions.assertEquals(0, actualResult);
     }
-
 }
