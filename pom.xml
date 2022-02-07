@@ -18,6 +18,11 @@
 
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+
+        <!-- testing properties -->
+        <suite.xml.base.path>${project.basedir}/src/test/resources/ru/levelp/at</suite.xml.base.path>
+        <suite.xml.file/>
     </properties>
 
     <dependencies>
@@ -26,8 +31,45 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
+            <!-- исключаем транзетивные зависимости из основной библиотеки -->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>com.google.code.findbugs</groupId>-->
+<!--                    <artifactId>jsr305</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>lesson-03-04-sample-calculator-test-suite</id>
+            <properties>
+                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorTestSuite.xml</suite.xml.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>lesson-03-04-sample-calculator-package-suite</id>
+            <properties>
+                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorPackageSuite.xml</suite.xml.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>lesson-03-04-sample-calculator-positive-group-suite</id>
+            <properties>
+                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorTestPositiveGroupSuite.xml</suite.xml.file>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>lesson-03-04-sample-calculator-negative-group-suite</id>
+            <properties>
+                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorTestNegativeGroupSuite.xml</suite.xml.file>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -70,6 +112,18 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <suiteXmlFiles>
+<!--                        <suiteXmlFile>src/test/resources/ru/levelp/at/lesson03_04/unit/tests/suites/SampleCalculatorPackageSuite.xml</suiteXmlFile>-->
+                        <suiteXmlFile>${suite.xml.file}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
             </plugin>
         </plugins>
     </build>

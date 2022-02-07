@@ -1,4 +1,4 @@
-package ru.levelp.at.lesson03.maven.unit.test.inheretence;
+package ru.levelp.at.lesson03.maven.unit.test.groups;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -22,13 +22,13 @@ public abstract class CalculatorBaseTest {
         System.out.println(this.getClass().getCanonicalName() + "#beforeClass");
     }
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void setUp() {
         System.out.println(this.getClass().getCanonicalName() + "#setUp");
         calculator = new Calculator();
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"positive", "negative"})
     public void tearDown() {
         calculator = null;
         System.out.println(this.getClass().getCanonicalName() + "#tearDown");
