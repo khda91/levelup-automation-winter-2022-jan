@@ -20,11 +20,13 @@
         <commons-io.version>2.11.0</commons-io.version>
         <webdrivermanager.version>5.1.0</webdrivermanager.version>
         <rest-assured.version>4.5.1</rest-assured.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <jackson.version>2.13.2</jackson.version>
+        <lombok.version>1.18.22</lombok.version>
 
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <javafaker.version>1.0.2</javafaker.version>
 
         <!-- testing properties -->
         <suite.xml.base.path>${project.basedir}/src/test/resources/ru/levelp/at</suite.xml.base.path>
@@ -82,6 +84,20 @@
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
 
