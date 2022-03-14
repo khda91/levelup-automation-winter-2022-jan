@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.levelp.at.lesson03.maven.unit.test.inheretence.CalculatorBaseTest;
@@ -40,6 +41,6 @@ public class CsvCalculatorTest extends CalculatorBaseTest {
     @Test(dataProvider = "csvDataProvider")
     public void sumCalculatorTest(Integer a, Integer b, Integer expectedResult) {
         int actualResult = calculator.sum(a, b);
-        assertEquals(actualResult, expectedResult);
+        assertEquals(Optional.of(actualResult), expectedResult);
     }
 }
