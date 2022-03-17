@@ -3,6 +3,7 @@ package ru.levelp.at.lesson1011.cicd.step.desing.pattern.tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -25,8 +26,12 @@ public abstract class SeleniumBaseTest {
     @BeforeMethod
     public void setUp(ITestContext context) {
 
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+
         // Открыли браузер
-        driver = new ChromeDriver();
+        var options = new ChromeOptions().setHeadless(headless);
+        driver = new ChromeDriver(options);
+
         actionSteps = new ActionSteps(driver);
         assertionSteps = new AssertionSteps(driver);
 
