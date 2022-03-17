@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Step Design Pattern Test Suite">
+
+    <listeners>
+        <listener class-name="ru.levelp.at.lesson1011.cicd.listener.AllureListener"/>
+    </listeners>
+
+    <test name="Step Design Pattern Test package">
+        <packages>
+            <package name="ru.levelp.at.lesson1011.cicd.step.desing.pattern.tests.*"/>
+        </packages>
+    </test>
+
+</suite>

@@ -158,6 +158,13 @@
                 <suite.xml.file>${suite.xml.base.path}/lesson1011/cicd/standard/reporting/SeleniumMavenStandardReporting.xml</suite.xml.file>
             </properties>
         </profile>
+
+        <profile>
+            <id>lesson-10-11-step-design-pattern-suite</id>
+            <properties>
+                <suite.xml.file>${suite.xml.base.path}/lesson1011/cicd/standard/reporting/SeleniumStepDesignPatterSuite.xml</suite.xml.file>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
