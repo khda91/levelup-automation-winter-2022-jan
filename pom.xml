@@ -32,6 +32,7 @@
         <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <allure-maven.version>2.11.2</allure-maven.version>
+        <cucumber.version>7.2.3</cucumber.version>
 
         <!-- testing properties -->
         <suite.xml.base.path>${project.basedir}/src/test/resources/ru/levelp/at</suite.xml.base.path>
@@ -119,6 +120,18 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
         </dependency>
 
     </dependencies>
