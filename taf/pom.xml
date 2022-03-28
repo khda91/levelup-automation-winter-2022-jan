@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.levelp.at</groupId>
-    <artifactId>levelup-automation-winter-2022-jan</artifactId>
+    <artifactId>taf</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -21,22 +21,21 @@
         <webdrivermanager.version>5.1.0</webdrivermanager.version>
         <rest-assured.version>4.5.1</rest-assured.version>
         <javafaker.version>1.0.2</javafaker.version>
-        <jackson.version>2.13.2</jackson.version>
+        <jackson.version>2.13.2.1</jackson.version>
         <lombok.version>1.18.22</lombok.version>
         <aspectj.version>1.9.7</aspectj.version>
         <slf4j.version>1.7.36</slf4j.version>
         <logback.version>1.2.11</logback.version>
         <allure.version>2.17.3</allure.version>
-        <cucumber.version>7.2.3</cucumber.version>
+        <owner.version>1.0.12</owner.version>
+        <janino.version>3.1.6</janino.version>
 
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <allure-maven.version>2.11.2</allure-maven.version>
 
-        <!-- testing properties -->
-        <suite.xml.base.path>${project.basedir}/src/test/resources/ru/levelp/at</suite.xml.base.path>
-        <suite.xml.file/>
     </properties>
 
     <dependencies>
@@ -45,13 +44,6 @@
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
             <scope>test</scope>
-            <!-- исключаем транзетивные зависимости из основной библиотеки -->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>com.google.code.findbugs</groupId>-->
-<!--                    <artifactId>jsr305</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
         </dependency>
 
         <dependency>
@@ -123,62 +115,30 @@
         </dependency>
 
         <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>${cucumber.version}</version>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>${owner.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber.version}</version>
+            <groupId>org.codehaus.janino</groupId>
+            <artifactId>janino</artifactId>
+            <version>${janino.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.ant</groupId>
+                    <artifactId>ant</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>
-
-    <profiles>
-        <profile>
-            <id>lesson-03-04-sample-calculator-test-suite</id>
-            <properties>
-                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorTestSuite.xml</suite.xml.file>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>lesson-03-04-sample-calculator-package-suite</id>
-            <properties>
-                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorPackageSuite.xml</suite.xml.file>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>lesson-03-04-sample-calculator-positive-group-suite</id>
-            <properties>
-                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorTestPositiveGroupSuite.xml</suite.xml.file>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>lesson-03-04-sample-calculator-negative-group-suite</id>
-            <properties>
-                <suite.xml.file>${suite.xml.base.path}/lesson03_04/unit/tests/suites/SampleCalculatorTestNegativeGroupSuite.xml</suite.xml.file>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>lesson-10-11-maven-standard-test-report-suite</id>
-            <properties>
-                <suite.xml.file>${suite.xml.base.path}/lesson1011/cicd/standard/reporting/SeleniumMavenStandardReporting.xml</suite.xml.file>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>lesson-10-11-step-design-pattern-suite</id>
-            <properties>
-                <suite.xml.file>${suite.xml.base.path}/lesson1011/cicd/standard/reporting/SeleniumStepDesignPatterSuite.xml</suite.xml.file>
-            </properties>
-        </profile>
-    </profiles>
 
     <build>
         <plugins>
@@ -228,13 +188,18 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven-failsafe-plugin.version}</version>
+                <configuration>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-                    <suiteXmlFiles>
-<!--                        <suiteXmlFile>src/test/resources/ru/levelp/at/lesson03_04/unit/tests/suites/SampleCalculatorPackageSuite.xml</suiteXmlFile>-->
-                        <suiteXmlFile>${suite.xml.file}</suiteXmlFile>
-                    </suiteXmlFiles>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -243,6 +208,22 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
